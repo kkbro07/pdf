@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Merge Website</title>
+  <style>
+    #file-drop-area {
+      width: 700px;
+      height: 200px;
+      border: 2px dashed #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+
+    #file-drop-area p {
+      margin: 0;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PDF Merge</h1>
+  <form action="/merge" method="post" enctype="multipart/form-data">
+    <div id="file-drop-area">
+        <p><b>Click to upload</b> or drag and drop<br><br>
+          PDF files(No size limits)</p>
+        <input type="file" id="pdf_files" name="pdf_files" multiple style="display: none;">
+      </div>
+    <button type="submit">Merge PDFs</button>
+  </form>
+  <script>
+  const fileDropArea = document.getElementById('file-drop-area');
+  const fileInput = document.getElementById('pdf_files');
+
+  fileDropArea.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    fileDropArea.style.border = '2px solid #ddd';
+  });
+
+  fileDropArea.addEventListener('dragleave', (event) => {
+    event.preventDefault();
+    fileDropArea.style.border = '2px dashed #ccc';
+  });
+
+  fileDropArea.addEventListener('drop', (event) => {
+    event.preventDefault();
+    fileDropArea.style.border = '2px dashed #ccc';
+    const files = event.dataTransfer.files;
+    fileInput.files = files;
+  });
+
+  fileDropArea.addEventListener('click', () => {
+    fileInput.click();
+  });
+  </script>
+</body>
+</html>

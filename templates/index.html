@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Compressor (Under 450KB)</title>
+</head>
+<body>
+    <h2>Upload a PDF to Compress</h2>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="pdf" accept=".pdf" required>
+        <button type="submit">Compress</button>
+    </form>
+
+    {% if download_link %}
+        <p><strong>Download:</strong> 
+            <a href="{{ url_for('uploaded_file', filename=download_link) }}">Compressed PDF</a><br>
+            Size: {{ size_kb }}
+        </p>
+    {% endif %}
+</body>
+</html>

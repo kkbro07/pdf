@@ -1,4 +1,8 @@
 
+
+
+
+
 # All-in-One PDF & Word Tools
 
 This is a web-based application built with **Flask** that provides a suite of tools for managing PDF and Word documents.  
@@ -31,15 +35,15 @@ Before you begin, ensure you have the following installed:
 - `pip` (Python package installer)
 
 ---
-
+````markdown
 ## ⚙ Installation
 
 1. **Clone the repository**:
    ```bash
    git clone https://your-repository-url.git
    cd your-repository-directory
+   
 ````
-
 2. **Create a virtual environment (recommended)**:
 
    ```bash
@@ -124,12 +128,3 @@ This project is licensed under the **MIT License**.
 ---
 
 **Built with ❤️ by Kirtan Kalathiya**
-
-```
-
----
-
-If you want, I can also give you the **`app.py`** full code for both tools (PDF compression + Images to PDF) in a clean combined version so it’s ready to run.  
-Do you want me to prepare that now?
-```
-

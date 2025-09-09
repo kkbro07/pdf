@@ -1,40 +1,24 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <title>Convert Images to PDF Online - FileSwapr</title>
-    <meta name="description" content="Combine multiple JPG, PNG, or other image files into a single PDF document online for free with FileSwapr.">
-    <meta name="keywords" content="images to PDF, JPG to PDF, PNG to PDF, convert photos to PDF, free image converter">
-    <meta property="og:title" content="Convert Images to PDF Online - FileSwapr">
-    <meta property="og:description" content="Combine multiple JPG, PNG, or other image files into a single PDF document online for free with FileSwapr.">
-    <meta property="og:url" content="https://fileswapr.vercel.app/images-to-pdf">
     {{ super() }}
+    <title>Convert Images to PDF - FileSwapr</title>
+    <meta name="description" content="Combine multiple JPG, PNG, or other image files into a single PDF document online for free with FileSwapr.">
 {% endblock %}
 
 {% block content %}
-    <header class="text-center my-5">
-        <h1><i class="fas fa-images text-primary"></i> Convert Images to PDF</h1>
-        <p class="lead">Combine multiple JPG, PNG, or other images into a single, easy-to-share PDF document.</p>
-    </header>
-
-    <div class="tool-card mx-auto" style="max-width: 600px;">
-        <form method="post" action="/images-to-pdf" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="imageFiles" class="form-label">Select Images</label>
-                <input type="file" name="images" id="imageFiles" accept="image/*" multiple required class="form-control">
+    <div class="single-tool-section">
+        <header class="text-center mb-5">
+            <h1><i class="fas fa-images text-primary"></i> Convert Images to PDF</h1>
+            <p class="lead">Combine multiple JPG, PNG, or other images into a single PDF.</p>
+        </header>
+        <form method="post" action="{{ url_for('images_to_pdf') }}" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="imageFiles" class="form-label fs-5">Select Images</label>
+                <input type="file" name="images" id="imageFiles" accept="image/*" multiple required class="form-control form-control-lg">
                 <div class="form-text">Select multiple JPG, PNG, or other image formats.</div>
             </div>
-            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
+            <button type="submit" class="btn btn-primary w-100 btn-lg"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
         </form>
-
-        {% if download_link %}
-            <div class="alert alert-success mt-4 text-center" role="alert">
-                <strong>Images Converted to PDF Successfully!</strong><br>
-                <a href="{{ download_link }}" class="btn btn-success mt-2" download>Download PDF</a>
-            </div>
-        {% elif error_message %}
-            <div class="alert alert-danger mt-4 text-center" role="alert">
-                <strong>Error:</strong> {{ error_message }}
-            </div>
-        {% endif %}
     </div>
 {% endblock %}

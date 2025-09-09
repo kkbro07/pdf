@@ -1,40 +1,33 @@
 {% extends "base.html" %}
 
 {% block head %}
+    {{ super() }}
     <title>Split PDF Files Online - FileSwapr</title>
     <meta name="description" content="Split a single PDF document into multiple files online for free with FileSwapr's PDF splitter tool.">
-    <meta name="keywords" content="split PDF, divide PDF, extract pages from PDF, online PDF splitter, free PDF tool">
-    <meta property="og:title" content="Split PDF Files Online - FileSwapr">
-    <meta property="og:description" content="Split a single PDF document into multiple files online for free with FileSwapr's PDF splitter tool.">
-    <meta property="og:url" content="https://fileswapr.vercel.app/split">
-    {{ super() }}
 {% endblock %}
 
 {% block content %}
-    <header class="text-center my-5">
-        <h1><i class="fas fa-cut text-primary"></i> Split PDF</h1>
-        <p class="lead">Split a single PDF into two separate files at the halfway point. More splitting options coming soon!</p>
-    </header>
-
-    <div class="tool-card mx-auto" style="max-width: 600px;">
-        <form method="post" action="/split" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="pdfFile" class="form-label">Select PDF to Split</label>
-                <input type="file" name="pdf" id="pdfFile" accept=".pdf" required class="form-control">
-                <div class="form-text">Your PDF will be split into two equal parts.</div>
+    <div class="single-tool-section">
+        <header class="text-center mb-5">
+            <h1><i class="fas fa-cut text-primary"></i> Split PDF</h1>
+            <p class="lead">Split a single PDF into two separate files at the halfway point.</p>
+        </header>
+        <form method="post" action="{{ url_for('split_pdf') }}" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="pdfFile" class="form-label fs-5">Select PDF to Split</label>
+                <input type="file" name="pdf" id="pdfFile" accept=".pdf" required class="form-control form-control-lg">
+                <div class="form-text">Your PDF will be split into two parts.</div>
             </div>
-            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-columns"></i> Split PDF</button>
+            <button type="submit" class="btn btn-primary w-100 btn-lg"><i class="fas fa-columns"></i> Split PDF</button>
         </form>
 
         {% if download_link1 and download_link2 %}
             <div class="alert alert-success mt-4 text-center" role="alert">
-                <strong>PDF Split Successfully!</strong><br>
+                <h4 class="alert-heading">PDF Split Successfully!</h4>
+                <p>Your document has been divided into two parts.</p>
+                <hr>
                 <a href="{{ download_link1 }}" class="btn btn-success mt-2 me-2" download>Download Part 1</a>
                 <a href="{{ download_link2 }}" class="btn btn-success mt-2" download>Download Part 2</a>
-            </div>
-        {% elif error_message %}
-            <div class="alert alert-danger mt-4 text-center" role="alert">
-                <strong>Error:</strong> {{ error_message }}
             </div>
         {% endif %}
     </div>

@@ -1,28 +1,25 @@
 {% extends "base.html" %}
 
-{% block head %}
-    {{ super() }}
-    <meta property="og:url" content="https://fileswapr.vercel.app/">
-{% endblock %}
-
 {% block content %}
     <header class="text-center hero-section my-5">
-        <h1>All-in-One Document Tools</h1>
-        <p class="lead">FileSwapr offers a free and simple suite of tools to manage your PDF and Word documents. No ads, no sign-ups.</p>
+        <h1>Every tool you need to work with PDFs in one place</h1>
+        <p class="lead">Merge, split, compress, or convert PDFs with just a few clicks. 100% FREE and easy to use.</p>
     </header>
 
-    <div class="row">
-        <div class="col-md-4">
-            <a href="/compress" class="text-decoration-none">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Compress PDF -->
+        <div class="col">
+            <a href="{{ url_for('compress_pdf') }}" class="text-decoration-none text-dark">
                 <div class="tool-card text-center">
                     <i class="fas fa-file-compress fa-3x mb-3 text-primary"></i>
                     <h2>Compress PDF</h2>
-                    <p class="text-muted">Reduce the file size of your PDF for easy sharing.</p>
+                    <p class="text-muted">Reduce file size while optimizing for maximal PDF quality.</p>
                 </div>
             </a>
         </div>
-        <div class="col-md-4">
-            <a href="/images-to-pdf" class="text-decoration-none">
+        <!-- Images to PDF -->
+        <div class="col">
+            <a href="{{ url_for('images_to_pdf') }}" class="text-decoration-none text-dark">
                 <div class="tool-card text-center">
                     <i class="fas fa-images fa-3x mb-3 text-primary"></i>
                     <h2>Images to PDF</h2>
@@ -30,39 +27,43 @@
                 </div>
             </a>
         </div>
-        <div class="col-md-4">
-            <a href="/merge" class="text-decoration-none">
+        <!-- Merge PDFs -->
+        <div class="col">
+            <a href="{{ url_for('merge_pdfs') }}" class="text-decoration-none text-dark">
                 <div class="tool-card text-center">
                     <i class="fas fa-object-group fa-3x mb-3 text-primary"></i>
                     <h2>Merge PDFs</h2>
-                    <p class="text-muted">Combine multiple PDF files into one single document.</p>
+                    <p class="text-muted">Combine PDFs in the order you want with the easiest PDF merger.</p>
                 </div>
             </a>
         </div>
-        <div class="col-md-4">
-            <a href="/split" class="text-decoration-none">
+        <!-- Split PDF -->
+        <div class="col">
+            <a href="{{ url_for('split_pdf') }}" class="text-decoration-none text-dark">
                 <div class="tool-card text-center">
                     <i class="fas fa-cut fa-3x mb-3 text-primary"></i>
                     <h2>Split PDF</h2>
-                    <p class="text-muted">Divide a single PDF into separate files.</p>
+                    <p class="text-muted">Separate one page or a whole set for easy conversion.</p>
                 </div>
             </a>
         </div>
-        <div class="col-md-4">
-            <a href="/pdf-to-word" class="text-decoration-none">
+        <!-- PDF to Word -->
+        <div class="col">
+            <a href="{{ url_for('pdf_to_word') }}" class="text-decoration-none text-dark">
                 <div class="tool-card text-center">
                     <i class="fas fa-file-word fa-3x mb-3 text-primary"></i>
                     <h2>PDF to Word</h2>
-                    <p class="text-muted">Convert your PDF files into editable Word documents.</p>
+                    <p class="text-muted">Easily convert your PDF files into easy to edit DOCX documents.</p>
                 </div>
             </a>
         </div>
-        <div class="col-md-4">
-            <a href="/word-to-pdf" class="text-decoration-none">
+        <!-- Word to PDF -->
+        <div class="col">
+            <a href="{{ url_for('word_to_pdf') }}" class="text-decoration-none text-dark">
                 <div class="tool-card text-center">
                     <i class="fas fa-file-pdf fa-3x mb-3 text-primary"></i>
                     <h2>Word to PDF</h2>
-                    <p class="text-muted">Turn your Microsoft Word documents into professional PDFs.</p>
+                    <p class="text-muted">Make DOC and DOCX files easy to read by converting them to PDF.</p>
                 </div>
             </a>
         </div>

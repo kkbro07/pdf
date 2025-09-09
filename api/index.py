@@ -15,7 +15,7 @@ def index():
     return render_template("index.html")
 
 
-# 📌 Compress PDF
+# Compress PDF (basic metadata/images removal)
 @app.route("/compress", methods=["POST"])
 def compress_pdf():
     pdf_file = request.files["pdf"]
@@ -31,7 +31,7 @@ def compress_pdf():
     for page in reader.pages:
         writer.add_page(page)
 
-    # basic compression (remove metadata)
+    # remove metadata + compress images (basic)
     writer.remove_images()
     writer.add_metadata({})
 
@@ -41,7 +41,7 @@ def compress_pdf():
     return send_file(output_path, as_attachment=True)
 
 
-# 📌 Convert Images to PDF
+# Convert Images to PDF
 @app.route("/images-to-pdf", methods=["POST"])
 def images_to_pdf():
     images = request.files.getlist("images")
@@ -55,11 +55,10 @@ def images_to_pdf():
         pdf.image(img_path, x=10, y=10, w=180)
 
     pdf.output(output_path)
-
     return send_file(output_path, as_attachment=True)
 
 
-# 📌 Merge PDFs
+# Merge PDFs
 @app.route("/merge", methods=["POST"])
 def merge_pdfs():
     pdfs = request.files.getlist("pdfs")
@@ -79,7 +78,7 @@ def merge_pdfs():
     return send_file(output_path, as_attachment=True)
 
 
-# 📌 Split PDF (first half / second half)
+# Split PDF (first half / second half)
 @app.route("/split", methods=["POST"])
 def split_pdf():
     pdf_file = request.files["pdf"]
@@ -104,11 +103,14 @@ def split_pdf():
 
     with open(output1, "wb") as f:
         writer1.write(f)
-
     with open(output2, "wb") as f:
         writer2.write(f)
 
-    return f"PDF Split Done!<br><a href='/download?file={output1}'>Part 1</a> | <a href='/download?file={output2}'>Part 2</a>"
+    return f"""
+        <h3>PDF Split Done ✅</h3>
+        <a href='/download?file={output1}'>Download Part 1</a><br>
+        <a href='/download?file={output2}'>Download Part 2</a>
+    """
 
 
 @app.route("/download")
@@ -117,5 +119,5 @@ def download():
     return send_file(file, as_attachment=True)
 
 
-# ✅ Vercel handler
+# ✅ Vercel requires this
 app = app

@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic Meta Tags for SEO -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All-in-One PDF & Word Tools</title>
+    <title>FileSwapr - Free Online PDF & Word Tools | Compress, Convert, Merge</title>
+    <meta name="description" content="FileSwapr offers free online tools to compress, merge, split PDFs, convert PDF to Word, Word to PDF, and images to PDF. Fast, secure, and no signup required.">
+    <meta name="keywords" content="PDF converter, Word to PDF, PDF to Word, compress PDF, merge PDF, split PDF, images to PDF, free online tools">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:title" content="FileSwapr - Free Online PDF & Word Tools">
+    <meta property="og:description" content="The easiest way to work with your documents. Convert, compress, merge, and edit PDFs and Word files for free.">
+    <meta property="og:image" content="https://fileswapr.vercel.app/static/og-image.png">
+    <meta property="og:url" content="https://fileswapr.vercel.app/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FileSwapr - Free Online PDF & Word Tools">
+    <meta name="twitter:description" content="The easiest way to work with your documents. Convert, compress, merge, and edit PDFs and Word files for free.">
+    <meta name="twitter:image" content="https://fileswapr.vercel.app/static/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <!-- Stylesheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -66,13 +88,28 @@
             margin: 0 10px;
         }
     </style>
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FileSwapr",
+      "url": "https://fileswapr.vercel.app/",
+      "description": "Free online tools to convert, compress, merge, and edit PDF and Word documents.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://fileswapr.vercel.app/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-file-alt"></i> PDF & Word Tools</a>
+            <a class="navbar-brand" href="/"><i class="fas fa-file-alt"></i> FileSwapr</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -80,6 +117,8 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#compress">Compress PDF</a></li>
                     <li class="nav-item"><a class="nav-link" href="#convert">Images to PDF</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#merge">Merge PDFs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#split">Split PDF</a></li>
                     <li class="nav-item"><a class="nav-link" href="#pdf-to-word">PDF to Word</a></li>
                     <li class="nav-item"><a class="nav-link" href="#word-to-pdf">Word to PDF</a></li>
                 </ul>
@@ -88,33 +127,21 @@
     </nav>
 
     <!-- Main Container -->
-    <div class="container">
+    <main class="container">
+
+        <header class="text-center my-5">
+            <h1>All-in-One Document Tools</h1>
+            <p class="lead">FileSwapr offers a free and simple suite of tools to manage your PDF and Word documents. No ads, no sign-ups.</p>
+        </header>
 
         <!-- Tool 1: PDF Compression -->
         <section id="compress" class="tool-card">
-            <h2><i class="fas fa-file-compress"></i> Compress PDF & Add Image</h2>
+            <h2><i class="fas fa-file-compress"></i> Compress PDF</h2>
+            <p class="text-muted">Reduce the file size of your PDF for easy sharing by removing metadata and optimizing images within the PDF.</p>
             <form method="post" action="/compress" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">PDF File (Max 450KB output)</label>
                     <input type="file" name="pdf" accept=".pdf" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Optional Image to Add</label>
-                    <input type="file" name="image" accept="image/*" class="form-control">
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Image Page</label>
-                        <input type="number" name="page_num" min="1" value="1" class="form-control">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Image Width (px)</label>
-                        <input type="number" name="img_width" value="200" class="form-control">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Image Height (px)</label>
-                        <input type="number" name="img_height" value="200" class="form-control">
-                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary w-100"><i class="fas fa-arrow-down"></i> Compress PDF</button>
             </form>
@@ -130,6 +157,7 @@
         <!-- Tool 2: Image to PDF -->
         <section id="convert" class="tool-card">
             <h2><i class="fas fa-images"></i> Convert Images to PDF</h2>
+            <p class="text-muted">Combine multiple JPG, PNG, or other images into a single, easy-to-share PDF document.</p>
             <form method="post" action="/images-to-pdf" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">Select Images</label>
@@ -145,15 +173,42 @@
             {% endif %}
         </section>
 
+        <!-- Tool: Merge PDFs -->
+        <section id="merge" class="tool-card">
+            <h2><i class="fas fa-object-group"></i> Merge PDFs</h2>
+            <p class="text-muted">Combine multiple PDF files into one single document. Select your files and we'll do the rest.</p>
+            <form method="post" action="/merge" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Select PDFs to Merge</label>
+                    <input type="file" name="pdfs" accept=".pdf" multiple required class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-file-medical"></i> Merge PDFs</button>
+            </form>
+        </section>
+
+        <!-- Tool: Split PDF -->
+        <section id="split" class="tool-card">
+            <h2><i class="fas fa-cut"></i> Split PDF</h2>
+            <p class="text-muted">Split a single PDF into two separate files at the halfway point. More splitting options coming soon!</p>
+            <form method="post" action="/split" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Select PDF to Split</label>
+                    <input type="file" name="pdf" accept=".pdf" required class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-columns"></i> Split PDF</button>
+            </form>
+        </section>
+
         <!-- Tool 3: PDF to Word -->
         <section id="pdf-to-word" class="tool-card">
             <h2><i class="fas fa-file-word"></i> Convert PDF to Word</h2>
+            <p class="text-muted">Convert your PDF files into editable Microsoft Word documents (.docx). This feature is coming soon!</p>
             <form method="post" action="/pdf-to-word" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">Select PDF</label>
                     <input type="file" name="pdf" accept=".pdf" required class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-exchange-alt"></i> Convert to Word</button>
+                <button type="submit" class="btn btn-primary w-100" disabled><i class="fas fa-exchange-alt"></i> Convert to Word (Coming Soon)</button>
             </form>
             {% if pdf_to_word_link %}
                 <div class="alert alert-success mt-4">
@@ -166,12 +221,13 @@
         <!-- Tool 4: Word to PDF -->
         <section id="word-to-pdf" class="tool-card">
             <h2><i class="fas fa-file-pdf"></i> Convert Word to PDF</h2>
+            <p class="text-muted">Turn your Microsoft Word documents (.doc, .docx) into professional PDFs. This feature is coming soon!</p>
             <form method="post" action="/word-to-pdf" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">Select Word Document</label>
                     <input type="file" name="word" accept=".doc,.docx" required class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-exchange-alt"></i> Convert to PDF</button>
+                <button type="submit" class="btn btn-primary w-100" disabled><i class="fas fa-exchange-alt"></i> Convert to PDF (Coming Soon)</button>
             </form>
             {% if word_to_pdf_link %}
                 <div class="alert alert-success mt-4">
@@ -181,21 +237,23 @@
             {% endif %}
         </section>
 
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer text-center">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <h5>About Us</h5>
-                    <p>Providing simple and effective PDF and Word document tools for everyone. Built with Flask and Bootstrap.</p>
+                    <h5>About FileSwapr</h5>
+                    <p>Providing simple, effective, and free document tools for everyone. Built with Flask and Bootstrap.</p>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="#compress">Compress PDF</a></li>
                         <li><a href="#convert">Images to PDF</a></li>
+                        <li><a href="#merge">Merge PDFs</a></li>
+                        <li><a href="#split">Split PDF</a></li>
                         <li><a href="#pdf-to-word">PDF to Word</a></li>
                         <li><a href="#word-to-pdf">Word to PDF</a></li>
                     </ul>
@@ -211,7 +269,7 @@
                 </div>
             </div>
             <hr>
-            <p class="mb-0">© {{ 2025 }} PDF & Word Tools | Built with ❤️ by Kirtan Kalathiya</p>
+            <p class="mb-0">© 2024 FileSwapr | Built with ❤️ by Kirtan Kalathiya</p>
         </div>
     </footer>
 

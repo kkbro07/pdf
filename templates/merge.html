@@ -1,30 +1,28 @@
 {% extends "base.html" %}
 
-{% block title %}Merge PDFs - FileSwapr{% endblock %}
+{% block title %}Merge PDF - FileSwapr Suite{% endblock %}
 
 {% block content %}
-<div class="single-tool-page">
-    <div class="single-tool-container">
-        <header class="text-center mb-5">
-            <h1><i class="fas fa-object-group text-primary"></i> Merge PDFs</h1>
-            <p class="lead">Select two or more PDF files to combine into a single document.</p>
-        </header>
+<div class="single-tool-container">
+    <header class="text-center mb-5">
+        <h1><i class="fas fa-object-group text-primary"></i> Merge PDFs</h1>
+        <p class="text-muted">Select two or more PDF files to combine into a single document.</p>
+    </header>
 
-        {% if error %}
-            <div class="alert alert-danger" role="alert">
-                <strong>Error:</strong> {{ error }}
-            </div>
-        {% endif %}
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    {% endif %}
 
-        <form method="post" enctype="multipart/form-data">
-            <div class="mb-4">
-                <label for="pdfFiles" class="form-label fs-5">Select PDF Files</label>
-                <input type="file" name="pdfs" id="pdfFiles" accept=".pdf" multiple required class="form-control form-control-lg">
-            </div>
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-file-medical"></i> Merge Now</button>
-            </div>
-        </form>
-    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-4">
+            <label for="pdfFiles" class="form-label fw-bold">Select PDF Files</label>
+            <input type="file" name="pdfs" id="pdfFiles" accept=".pdf" multiple required class="form-control form-control-lg">
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-file-medical me-2"></i>Merge Now</button>
+        </div>
+    </form>
 </div>
 {% endblock %}

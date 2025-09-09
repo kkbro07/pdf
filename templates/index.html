@@ -1,220 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All-in-One PDF & Word Tools</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            padding-top: 90px;
-            background-color: #f0f2f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .navbar {
-            background: linear-gradient(90deg, #4b6cb7, #182848);
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        .nav-link {
-            font-size: 1.1rem;
-            margin: 0 10px;
-        }
-        .tool-card {
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        .tool-card:hover {
-            transform: translateY(-10px);
-        }
-        .tool-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #4b6cb7;
-            padding-bottom: 10px;
-            color: #182848;
-        }
-        .btn-primary {
-            background-color: #4b6cb7;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #182848;
-        }
-        .footer {
-            background: #182848;
-            color: white;
-            padding: 40px 0;
-            margin-top: 50px;
-        }
-        .footer a {
-            color: #a9c1ff;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            color: #ffffff;
-        }
-        .footer .social-icons a {
-            font-size: 1.5rem;
-            margin: 0 10px;
-        }
-    </style>
+  <title>PDF Tools (Lite)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="container py-5">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-file-alt"></i> PDF & Word Tools</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#compress">Compress PDF</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#convert">Images to PDF</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pdf-to-word">PDF to Word</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#word-to-pdf">Word to PDF</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <h1 class="mb-4">PDF Tools (Vercel Lite)</h1>
 
-    <!-- Main Container -->
-    <div class="container">
+  <h3>Compress PDF</h3>
+  <form method="post" action="/compress" enctype="multipart/form-data">
+    <input type="file" name="pdf" required>
+    <button class="btn btn-primary">Compress</button>
+  </form>
 
-        <!-- Tool 1: PDF Compression -->
-        <section id="compress" class="tool-card">
-            <h2><i class="fas fa-file-compress"></i> Compress PDF & Add Image</h2>
-            <form method="post" action="/compress" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">PDF File (Max 450KB output)</label>
-                    <input type="file" name="pdf" accept=".pdf" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Optional Image to Add</label>
-                    <input type="file" name="image" accept="image/*" class="form-control">
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Image Page</label>
-                        <input type="number" name="page_num" min="1" value="1" class="form-control">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Image Width (px)</label>
-                        <input type="number" name="img_width" value="200" class="form-control">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label">Image Height (px)</label>
-                        <input type="number" name="img_height" value="200" class="form-control">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-arrow-down"></i> Compress PDF</button>
-            </form>
-            {% if compress_link %}
-                <div class="alert alert-success mt-4">
-                    <strong>Download Compressed PDF:</strong>
-                    <a href="{{ url_for('uploaded_file', filename=compress_link) }}" class="btn btn-success btn-sm ms-2">Click Here</a>
-                    <br>Size: {{ compress_size }}
-                </div>
-            {% endif %}
-        </section>
+  <hr>
 
-        <!-- Tool 2: Image to PDF -->
-        <section id="convert" class="tool-card">
-            <h2><i class="fas fa-images"></i> Convert Images to PDF</h2>
-            <form method="post" action="/images-to-pdf" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">Select Images</label>
-                    <input type="file" name="images" accept="image/*" multiple required class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
-            </form>
-            {% if img_pdf_link %}
-                <div class="alert alert-success mt-4">
-                    <strong>Download Image-to-PDF:</strong>
-                    <a href="{{ url_for('uploaded_file', filename=img_pdf_link) }}" class="btn btn-success btn-sm ms-2">Click Here</a>
-                </div>
-            {% endif %}
-        </section>
+  <h3>Images to PDF</h3>
+  <form method="post" action="/images-to-pdf" enctype="multipart/form-data">
+    <input type="file" name="images" multiple required>
+    <button class="btn btn-success">Convert</button>
+  </form>
 
-        <!-- Tool 3: PDF to Word -->
-        <section id="pdf-to-word" class="tool-card">
-            <h2><i class="fas fa-file-word"></i> Convert PDF to Word</h2>
-            <form method="post" action="/pdf-to-word" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">Select PDF</label>
-                    <input type="file" name="pdf" accept=".pdf" required class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-exchange-alt"></i> Convert to Word</button>
-            </form>
-            {% if pdf_to_word_link %}
-                <div class="alert alert-success mt-4">
-                    <strong>Download Word Document:</strong>
-                    <a href="{{ url_for('uploaded_file', filename=pdf_to_word_link) }}" class="btn btn-success btn-sm ms-2">Click Here</a>
-                </div>
-            {% endif %}
-        </section>
+  <hr>
 
-        <!-- Tool 4: Word to PDF -->
-        <section id="word-to-pdf" class="tool-card">
-            <h2><i class="fas fa-file-pdf"></i> Convert Word to PDF</h2>
-            <form method="post" action="/word-to-pdf" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">Select Word Document</label>
-                    <input type="file" name="word" accept=".doc,.docx" required class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-exchange-alt"></i> Convert to PDF</button>
-            </form>
-            {% if word_to_pdf_link %}
-                <div class="alert alert-success mt-4">
-                    <strong>Download PDF Document:</strong>
-                    <a href="{{ url_for('uploaded_file', filename=word_to_pdf_link) }}" class="btn btn-success btn-sm ms-2">Click Here</a>
-                </div>
-            {% endif %}
-        </section>
+  <h3>Merge PDFs</h3>
+  <form method="post" action="/merge" enctype="multipart/form-data">
+    <input type="file" name="pdfs" multiple required>
+    <button class="btn btn-warning">Merge</button>
+  </form>
 
-    </div>
+  <hr>
 
-    <!-- Footer -->
-    <footer class="footer text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5>About Us</h5>
-                    <p>Providing simple and effective PDF and Word document tools for everyone. Built with Flask and Bootstrap.</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#compress">Compress PDF</a></li>
-                        <li><a href="#convert">Images to PDF</a></li>
-                        <li><a href="#pdf-to-word">PDF to Word</a></li>
-                        <li><a href="#word-to-pdf">Word to PDF</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Connect with Us</h5>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <p class="mb-0">© {{ 2025 }} PDF & Word Tools | Built with ❤️ by Kirtan Kalathiya</p>
-        </div>
-    </footer>
+  <h3>Split PDF</h3>
+  <form method="post" action="/split" enctype="multipart/form-data">
+    <input type="file" name="pdf" required>
+    <button class="btn btn-danger">Split</button>
+  </form>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

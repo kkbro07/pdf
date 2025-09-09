@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Convert PDF to Word Online - FileSwapr</title>
+    <meta name="description" content="Convert your PDF files into editable Microsoft Word documents (.docx) online for free with FileSwapr. Coming Soon!">
+    <meta name="keywords" content="PDF to Word, convert PDF to DOCX, online PDF converter, free PDF to Word, edit PDF">
+    <meta property="og:title" content="Convert PDF to Word Online - FileSwapr (Coming Soon)">
+    <meta property="og:description" content="Convert your PDF files into editable Microsoft Word documents (.docx) online for free with FileSwapr. Coming Soon!">
+    <meta property="og:url" content="https://fileswapr.vercel.app/pdf-to-word">
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <header class="text-center my-5">
+        <h1><i class="fas fa-file-word text-primary"></i> Convert PDF to Word</h1>
+        <p class="lead">Convert your PDF files into editable Microsoft Word documents (.docx). This feature is coming soon!</p>
+    </header>
+
+    <div class="tool-card mx-auto text-center" style="max-width: 600px;">
+        <div class="alert alert-info" role="alert">
+            <strong>This feature is under development!</strong> We're working hard to bring you a reliable PDF to Word converter. Please check back soon!
+        </div>
+        <form method="post" action="/pdf-to-word" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="pdfFile" class="form-label">Select PDF</label>
+                <input type="file" name="pdf" id="pdfFile" accept=".pdf" class="form-control" disabled>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" disabled><i class="fas fa-exchange-alt"></i> Convert to Word (Coming Soon)</button>
+        </form>
+    </div>
+{% endblock %}

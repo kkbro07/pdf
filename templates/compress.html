@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Compress PDF Online - FileSwapr</title>
+    <meta name="description" content="Reduce the file size of your PDF documents online for free with FileSwapr's PDF compressor. Fast and efficient.">
+    <meta name="keywords" content="compress PDF, reduce PDF size, online PDF compressor, free PDF optimizer">
+    <meta property="og:title" content="Compress PDF Online - FileSwapr">
+    <meta property="og:description" content="Reduce the file size of your PDF documents online for free with FileSwapr's PDF compressor. Fast and efficient.">
+    <meta property="og:url" content="https://fileswapr.vercel.app/compress">
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <header class="text-center my-5">
+        <h1><i class="fas fa-file-compress text-primary"></i> Compress PDF</h1>
+        <p class="lead">Reduce the file size of your PDF for easy sharing by removing metadata and optimizing images within the PDF.</p>
+    </header>
+
+    <div class="tool-card mx-auto" style="max-width: 600px;">
+        <form method="post" action="/compress" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="pdfFile" class="form-label">Upload PDF File</label>
+                <input type="file" name="pdf" id="pdfFile" accept=".pdf" class="form-control" required>
+                <div class="form-text">Max 450KB output for effective compression.</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-arrow-down"></i> Compress PDF</button>
+        </form>
+
+        {% if download_link %}
+            <div class="alert alert-success mt-4 text-center" role="alert">
+                <strong>PDF Compressed Successfully!</strong><br>
+                <a href="{{ download_link }}" class="btn btn-success mt-2" download>Download Compressed PDF</a>
+            </div>
+        {% elif error_message %}
+            <div class="alert alert-danger mt-4 text-center" role="alert">
+                <strong>Error:</strong> {{ error_message }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,154 @@
+body {
+    padding-top: 90px;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+.navbar {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+}
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+.navbar-brand:hover {
+    color: #eee !important;
+}
+.nav-link {
+    font-size: 1.1rem;
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+.nav-link:hover {
+    color: #fff !important;
+    text-decoration: underline;
+}
+.tool-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; /* For homepage cards */
+    flex-direction: column;
+    justify-content: space-between;
+}
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+.tool-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4b6cb7;
+    padding-bottom: 10px;
+    color: #182848;
+}
+.tool-card h3 { /* For individual tool pages */
+    font-size: 2rem;
+    color: #182848;
+    margin-bottom: 25px;
+}
+.tool-card .description {
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.tool-icon {
+    font-size: 3rem;
+    color: #4b6cb7;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #4b6cb7;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #182848;
+}
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+.footer {
+    background: #182848;
+    color: white;
+    padding: 40px 0;
+    margin-top: 50px;
+    font-size: 0.95rem;
+}
+.footer h5 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.footer p {
+    color: #a9c1ff;
+    line-height: 1.6;
+}
+.footer a {
+    color: #a9c1ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+.footer .social-icons a {
+    font-size: 1.6rem;
+    margin: 0 12px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+.footer .social-icons a:hover {
+    color: #a9c1ff;
+}
+.list-unstyled li {
+    margin-bottom: 8px;
+}
+
+/* Alert messages */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+}
+
+/* Specific styling for individual tool pages */
+.single-tool-section {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.single-tool-section .mb-4 {
+    margin-bottom: 1.5rem !important;
+}

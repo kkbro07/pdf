@@ -1,5 +1,4 @@
 from app import app
 
-# Vercel looks for 'app' here
-if __name__ == "__main__":
-    app.run()
+# Vercel needs only the app object, don't call app.run()
+# This is the entry point

@@ -6,65 +6,93 @@
 {% endblock %}
 
 {% block content %}
-    <header class="text-center hero-section my-5">
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-badge">100% Free • No Registration Required</div>
         <h1>All-in-One Document Tools</h1>
-        <p class="lead">FileSwapr offers a free and simple suite of tools to manage your PDF and Word documents. No ads, no sign-ups.</p>
-    </header>
+        <p>Convert, compress, merge, split PDFs and images easily. Fast, secure, and completely free to use.</p>
+        <a href="#tools" class="btn btn-get-started">Get Started Free &rarr;</a>
+        <p class="hero-caption">No signup required • Works instantly</p>
 
-    <div class="row">
-        <div class="col-md-4">
-            <a href="/compress" class="text-decoration-none">
-                <div class="tool-card text-center">
-                    <i class="fas fa-file-compress fa-3x mb-3 text-primary"></i>
-                    <h2>Compress PDF</h2>
-                    <p class="text-muted">Reduce the file size of your PDF for easy sharing.</p>
-                </div>
-            </a>
+        <div class="features-section d-none d-md-flex">
+            <div class="feature-item"><i class="fas fa-shield-alt me-2"></i>100% Secure</div>
+            <div class="feature-item"><i class="fas fa-bolt me-2"></i>Lightning Fast</div>
+            <div class="feature-item"><i class="fas fa-globe me-2"></i>Works Everywhere</div>
         </div>
-        <div class="col-md-4">
-            <a href="/images-to-pdf" class="text-decoration-none">
-                <div class="tool-card text-center">
-                    <i class="fas fa-images fa-3x mb-3 text-primary"></i>
-                    <h2>Images to PDF</h2>
-                    <p class="text-muted">Combine multiple images into a single PDF document.</p>
+    </section>
+</div>
+
+<!-- Tools Section -->
+<section class="tools-section" id="tools">
+    <div class="container">
+        <h2>Powerful Tools for Every Need</h2>
+        <p class="lead">Professional-grade document tools that work instantly in your browser. No software to install, no accounts to create.</p>
+
+        <div class="row">
+            <!-- Compress PDF -->
+            <div class="col-lg-4 col-md-6">
+                <div class="tool-card">
+                    <div class="icon icon-compress"><i class="fas fa-file-compress"></i></div>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce PDF file size for easy sharing without losing quality.</p>
+                    <a href="/compress" class="tool-link">Try Compress PDF &rarr;</a>
                 </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="/merge" class="text-decoration-none">
-                <div class="tool-card text-center">
-                    <i class="fas fa-object-group fa-3x mb-3 text-primary"></i>
-                    <h2>Merge PDFs</h2>
-                    <p class="text-muted">Combine multiple PDF files into one single document.</p>
+            </div>
+            <!-- Merge PDF -->
+            <div class="col-lg-4 col-md-6">
+                <div class="tool-card">
+                    <div class="icon icon-merge"><i class="fas fa-object-group"></i></div>
+                    <h3>Merge PDFs</h3>
+                    <p>Combine multiple PDF files into one document seamlessly.</p>
+                    <a href="/merge" class="tool-link">Try Merge PDFs &rarr;</a>
                 </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="/split" class="text-decoration-none">
-                <div class="tool-card text-center">
-                    <i class="fas fa-cut fa-3x mb-3 text-primary"></i>
-                    <h2>Split PDF</h2>
-                    <p class="text-muted">Divide a single PDF into separate files.</p>
+            </div>
+            <!-- Split PDF -->
+            <div class="col-lg-4 col-md-6">
+                <div class="tool-card">
+                    <div class="icon icon-split"><i class="fas fa-cut"></i></div>
+                    <h3>Split PDF</h3>
+                    <p>Split a PDF into multiple smaller files or extract specific pages.</p>
+                    <a href="/split" class="tool-link">Try Split PDF &rarr;</a>
                 </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="/pdf-to-word" class="text-decoration-none">
-                <div class="tool-card text-center">
-                    <i class="fas fa-file-word fa-3x mb-3 text-primary"></i>
-                    <h2>PDF to Word</h2>
-                    <p class="text-muted">Convert your PDF files into editable Word documents.</p>
+            </div>
+            <!-- PDF to Word -->
+            <div class="col-lg-4 col-md-6">
+                <div class="tool-card">
+                    <div class="icon icon-pdf-word"><i class="fas fa-file-word"></i></div>
+                    <h3>PDF to Word</h3>
+                    <p>Convert PDF documents into editable Word files instantly.</p>
+                    <a href="/pdf-to-word" class="tool-link">Try PDF to Word &rarr;</a>
                 </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="/word-to-pdf" class="text-decoration-none">
-                <div class="tool-card text-center">
-                    <i class="fas fa-file-pdf fa-3x mb-3 text-primary"></i>
-                    <h2>Word to PDF</h2>
-                    <p class="text-muted">Turn your Microsoft Word documents into professional PDFs.</p>
+            </div>
+            <!-- Word to PDF -->
+            <div class="col-lg-4 col-md-6">
+                <div class="tool-card">
+                    <div class="icon icon-word-pdf"><i class="fas fa-file-pdf"></i></div>
+                    <h3>Word to PDF</h3>
+                    <p>Turn Word documents into professional PDF files.</p>
+                    <a href="/word-to-pdf" class="tool-link">Try Word to PDF &rarr;</a>
                 </div>
-            </a>
+            </div>
+            <!-- Images to PDF -->
+            <div class="col-lg-4 col-md-6">
+                <div class="tool-card">
+                    <div class="icon icon-images-pdf"><i class="fas fa-images"></i></div>
+                    <h3>Images to PDF</h3>
+                    <p>Combine multiple images into a single PDF document.</p>
+                    <a href="/images-to-pdf" class="tool-link">Try Images to PDF &rarr;</a>
+                </div>
+            </div>
         </div>
     </div>
+</section>
+
+<!-- CTA Bar -->
+<div class="cta-bar">
+    <div class="container">
+        <h4>All tools are completely free forever</h4>
+        <p class="text-muted mb-0">No limits, no watermarks, no registration required</p>
+    </div>
+</div>
 {% endblock %}

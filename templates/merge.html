@@ -1,40 +1,40 @@
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% block head %}
-        <title>Merge PDF Files Online - FileSwapr</title>
-        <meta name="description" content="Combine multiple PDF documents into one single file online for free with FileSwapr's PDF merger tool.">
-        <meta name="keywords" content="merge PDF, combine PDF, online PDF merger, join PDF files, free PDF tool">
-        <meta property="og:title" content="Merge PDF Files Online - FileSwapr">
-        <meta property="og:description" content="Combine multiple PDF documents into one single file online for free with FileSwapr's PDF merger tool.">
-        <meta property="og:url" content="https://fileswapr.vercel.app/merge">
-        {{ super() }}
-    {% endblock %}
+{% block head %}
+    <title>Merge PDF Files Online - FileSwapr</title>
+    <!-- Add other meta tags as needed -->
+    {{ super() }}
+{% endblock %}
 
-    {% block content %}
-        <header class="text-center my-5">
-            <h1><i class="fas fa-object-group text-primary"></i> Merge PDFs</h1>
-            <p class="lead">Combine multiple PDF files into one single document. Select your files and we'll do the rest.</p>
-        </header>
+{% block content %}
+<div class="container">
+    <section class="text-center py-5">
+        <h1>Merge PDFs</h1>
+        <p class="lead">Combine multiple PDF files into one single document. Select your files and we'll do the rest.</p>
+    </section>
 
-        <div class="tool-card mx-auto" style="max-width: 600px;">
-            <form method="post" action="/merge" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="pdfFiles" class="form-label">Select PDFs to Merge</label>
-                    <input type="file" name="pdfs" id="pdfFiles" accept=".pdf" multiple required class="form-control">
-                    <div class="form-text">Select two or more PDF files to combine.</div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100"><i class="fas fa-file-medical"></i> Merge PDFs</button>
-            </form>
+    <div class="single-tool-section mx-auto">
+        <form method="post" action="/merge" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="pdfFiles" class="form-label fw-bold">Select PDFs to Merge</label>
+                <input type="file" name="pdfs" id="pdfFiles" accept=".pdf" multiple required class="form-control form-control-lg">
+                <div class="form-text mt-2">Select two or more PDF files to combine.</div>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-get-started btn-lg"><i class="fas fa-file-medical me-2"></i>Merge PDFs</button>
+            </div>
+        </form>
 
-            {% if download_link %}
-                <div class="alert alert-success mt-4 text-center" role="alert">
-                    <strong>PDFs Merged Successfully!</strong><br>
-                    <a href="{{ download_link }}" class="btn btn-success mt-2" download>Download Merged PDF</a>
-                </div>
-            {% elif error_message %}
-                <div class="alert alert-danger mt-4 text-center" role="alert">
-                    <strong>Error:</strong> {{ error_message }}
-                </div>
-            {% endif %}
-        </div>
-    {% endblock %}
+        {% if download_link %}
+            <div class="alert alert-success mt-4 text-center" role="alert">
+                <strong>PDFs Merged Successfully!</strong><br>
+                <a href="{{ download_link }}" class="btn btn-success mt-2" download>Download Merged PDF</a>
+            </div>
+        {% elif error_message %}
+            <div class="alert alert-danger mt-4 text-center" role="alert">
+                <strong>Error:</strong> {{ error_message }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

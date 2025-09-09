@@ -1,24 +1,30 @@
 {% extends "base.html" %}
 
-{% block head %}
-    {{ super() }}
-    <title>Merge PDF Files Online - FileSwapr</title>
-    <meta name="description" content="Combine multiple PDF documents into one single file online for free with FileSwapr's PDF merger tool.">
-{% endblock %}
+{% block title %}Merge PDFs - FileSwapr{% endblock %}
 
 {% block content %}
-    <div class="single-tool-section">
+<div class="single-tool-page">
+    <div class="single-tool-container">
         <header class="text-center mb-5">
             <h1><i class="fas fa-object-group text-primary"></i> Merge PDFs</h1>
-            <p class="lead">Combine multiple PDF files into one single document.</p>
+            <p class="lead">Select two or more PDF files to combine into a single document.</p>
         </header>
-        <form method="post" action="{{ url_for('merge_pdfs') }}" enctype="multipart/form-data">
-            <div class="mb-4">
-                <label for="pdfFiles" class="form-label fs-5">Select PDFs to Merge</label>
-                <input type="file" name="pdfs" id="pdfFiles" accept=".pdf" multiple required class="form-control form-control-lg">
-                <div class="form-text">Select two or more PDF files to combine.</div>
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Error:</strong> {{ error }}
             </div>
-            <button type="submit" class="btn btn-primary w-100 btn-lg"><i class="fas fa-file-medical"></i> Merge PDFs</button>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label for="pdfFiles" class="form-label fs-5">Select PDF Files</label>
+                <input type="file" name="pdfs" id="pdfFiles" accept=".pdf" multiple required class="form-control form-control-lg">
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-file-medical"></i> Merge Now</button>
+            </div>
         </form>
     </div>
+</div>
 {% endblock %}

@@ -1,71 +1,72 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileSwapr - Modern PDF Tools</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
 
-{% block content %}
-    <header class="text-center hero-section my-5">
-        <h1>Every tool you need to work with PDFs in one place</h1>
-        <p class="lead">Merge, split, compress, or convert PDFs with just a few clicks. 100% FREE and easy to use.</p>
+<div class="parallax-container">
+    
+    <!-- Parallax Hero Section -->
+    <header class="parallax-hero">
+        <div class="parallax-bg"></div>
+        <div class="hero-content">
+            <h1>Every Tool You Need for PDFs</h1>
+            <p class="lead">Merge, split, compress, and convert your documents with ease. 100% free and secure.</p>
+        </div>
     </header>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Compress PDF -->
-        <div class="col">
-            <a href="{{ url_for('compress_pdf') }}" class="text-decoration-none text-dark">
-                <div class="tool-card text-center">
-                    <i class="fas fa-file-compress fa-3x mb-3 text-primary"></i>
-                    <h2>Compress PDF</h2>
-                    <p class="text-muted">Reduce file size while optimizing for maximal PDF quality.</p>
+    <!-- Main Content with Tool Cards -->
+    <section class="main-content">
+        <div class="container">
+            <h2 class="section-title">Choose Your Tool</h2>
+            <div class="row justify-content-center">
+
+                <!-- Merge PDF (Working) -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ url_for('merge_pdfs') }}" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-object-group"></i></div>
+                        <h3>Merge PDFs</h3>
+                        <p>Combine multiple PDF files into one single document.</p>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <!-- Images to PDF -->
-        <div class="col">
-            <a href="{{ url_for('images_to_pdf') }}" class="text-decoration-none text-dark">
-                <div class="tool-card text-center">
-                    <i class="fas fa-images fa-3x mb-3 text-primary"></i>
-                    <h2>Images to PDF</h2>
-                    <p class="text-muted">Combine multiple images into a single PDF document.</p>
+
+                <!-- Split PDF (Coming Soon) -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ url_for('split_pdf') }}" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-cut"></i></div>
+                        <h3>Split PDF</h3>
+                        <p>Divide a single PDF into separate files. (Coming Soon)</p>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <!-- Merge PDFs -->
-        <div class="col">
-            <a href="{{ url_for('merge_pdfs') }}" class="text-decoration-none text-dark">
-                <div class="tool-card text-center">
-                    <i class="fas fa-object-group fa-3x mb-3 text-primary"></i>
-                    <h2>Merge PDFs</h2>
-                    <p class="text-muted">Combine PDFs in the order you want with the easiest PDF merger.</p>
+
+                <!-- Compress PDF (Coming Soon) -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ url_for('compress_pdf') }}" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-file-compress"></i></div>
+                        <h3>Compress PDF</h3>
+                        <p>Reduce the file size of your PDF. (Coming Soon)</p>
+                    </a>
                 </div>
-            </a>
+
+            </div>
         </div>
-        <!-- Split PDF -->
-        <div class="col">
-            <a href="{{ url_for('split_pdf') }}" class="text-decoration-none text-dark">
-                <div class="tool-card text-center">
-                    <i class="fas fa-cut fa-3x mb-3 text-primary"></i>
-                    <h2>Split PDF</h2>
-                    <p class="text-muted">Separate one page or a whole set for easy conversion.</p>
-                </div>
-            </a>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 FileSwapr. All rights reserved.</p>
         </div>
-        <!-- PDF to Word -->
-        <div class="col">
-            <a href="{{ url_for('pdf_to_word') }}" class="text-decoration-none text-dark">
-                <div class="tool-card text-center">
-                    <i class="fas fa-file-word fa-3x mb-3 text-primary"></i>
-                    <h2>PDF to Word</h2>
-                    <p class="text-muted">Easily convert your PDF files into easy to edit DOCX documents.</p>
-                </div>
-            </a>
-        </div>
-        <!-- Word to PDF -->
-        <div class="col">
-            <a href="{{ url_for('word_to_pdf') }}" class="text-decoration-none text-dark">
-                <div class="tool-card text-center">
-                    <i class="fas fa-file-pdf fa-3x mb-3 text-primary"></i>
-                    <h2>Word to PDF</h2>
-                    <p class="text-muted">Make DOC and DOCX files easy to read by converting them to PDF.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-{% endblock %}
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

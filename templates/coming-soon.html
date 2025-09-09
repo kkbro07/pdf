@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}{{ tool_name }} (Coming Soon){% endblock %}
+{% block title %}{{ tool_name }} (Coming Soon) - FileSwapr{% endblock %}
 
 {% block content %}
-<div class="single-tool-container text-center">
-    <header class="mb-5">
-        <h1><i class="{{ icon_class }} text-primary"></i> {{ tool_name }}</h1>
-        <p class="text-muted">This feature is currently under development.</p>
-    </header>
-    <div class="alert alert-info" role="alert">
-        <strong>Coming Soon!</strong> We are working hard to bring this feature to you. Please check back later!
+<div class="single-tool-page">
+    <div class="single-tool-container text-center">
+        <header class="mb-5">
+            <h1><i class="{{ icon_class }} text-primary"></i> {{ tool_name }}</h1>
+            <p class="lead">This feature is currently under construction.</p>
+        </header>
+        <div class="alert alert-info" role="alert">
+            <strong>Coming Soon!</strong> We are working hard to bring this feature to you. Please check back later!
+        </div>
     </div>
 </div>
 {% endblock %}

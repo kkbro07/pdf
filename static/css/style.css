@@ -1,188 +1,154 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-:root {
-    --sidebar-bg: #ffffff;
-    --main-bg: #f7f8fa;
-    --border-color: #e9ecef;
-    --primary-color: #0d6efd;
-    --text-color: #495057;
-    --text-muted: #6c757d;
-    --card-bg: #ffffff;
-    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--main-bg);
-    color: var(--text-color);
-    margin: 0;
+    padding-top: 90px;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
 }
-
-.dashboard-wrapper {
-    display: flex;
-    min-height: 100vh;
+.navbar {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
 }
-
-/* --- Sidebar --- */
-.sidebar {
-    width: 260px;
-    background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--border-color);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-}
-
-.sidebar-header {
-    margin-bottom: 32px;
-}
-
-.sidebar-header .logo {
+.navbar-brand {
+    font-weight: bold;
     font-size: 1.5rem;
-    font-weight: 700;
-    color: #212529;
-    text-decoration: none;
+    color: #fff !important;
 }
-.sidebar-header .logo i {
-    color: var(--primary-color);
+.navbar-brand:hover {
+    color: #eee !important;
 }
-
-.sidebar-nav .nav-link {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s, color 0.2s;
+.nav-link {
+    font-size: 1.1rem;
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.8) !important;
 }
-
-.sidebar-nav .nav-link i {
-    margin-right: 12px;
-    width: 20px;
-    text-align: center;
+.nav-link:hover {
+    color: #fff !important;
+    text-decoration: underline;
 }
-
-.sidebar-nav .nav-link:hover {
-    background-color: #f1f3f5;
-}
-
-.sidebar-nav .nav-link.active {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-/* --- Main Content --- */
-.main-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.topbar {
-    background-color: var(--sidebar-bg);
-    border-bottom: 1px solid var(--border-color);
-    padding: 16px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.search-box {
-    position: relative;
-    width: 300px;
-}
-.search-box input {
-    width: 100%;
-    padding: 8px 12px 8px 36px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    background-color: #f1f3f5;
-}
-.search-box i {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    color: var(--text-color);
-}
-.user-profile i {
-    font-size: 1.5rem;
-}
-
-/* --- Content Area --- */
-.content-area {
-    padding: 32px;
-    flex-grow: 1;
-}
-
-.content-header {
-    margin-bottom: 32px;
-}
-.content-header h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #212529;
-}
-
-/* --- Tool Card --- */
-.tool-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 24px;
-}
-
 .tool-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    text-decoration: none;
-    color: var(--text-color);
-    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; /* For homepage cards */
+    flex-direction: column;
+    justify-content: space-between;
 }
-
 .tool-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--card-shadow);
-    color: var(--primary-color);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+.tool-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4b6cb7;
+    padding-bottom: 10px;
+    color: #182848;
+}
+.tool-card h3 { /* For individual tool pages */
+    font-size: 2rem;
+    color: #182848;
+    margin-bottom: 25px;
+}
+.tool-card .description {
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 .tool-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 16px;
+    font-size: 3rem;
+    color: #4b6cb7;
+    margin-bottom: 15px;
 }
 
-.tool-card h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-/* --- Single Tool Page (Merge, Coming Soon) --- */
-.single-tool-container {
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    padding: 40px;
-    max-width: 600px;
-    margin: 0 auto;
-    border: 1px solid var(--border-color);
-}
-.single-tool-container h1 {
-    font-weight: 600;
-}
 .btn-primary {
-    background-color: var(--primary-color);
+    background-color: #4b6cb7;
     border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #182848;
+}
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+.footer {
+    background: #182848;
+    color: white;
+    padding: 40px 0;
+    margin-top: 50px;
+    font-size: 0.95rem;
+}
+.footer h5 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.footer p {
+    color: #a9c1ff;
+    line-height: 1.6;
+}
+.footer a {
+    color: #a9c1ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+.footer .social-icons a {
+    font-size: 1.6rem;
+    margin: 0 12px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+.footer .social-icons a:hover {
+    color: #a9c1ff;
+}
+.list-unstyled li {
+    margin-bottom: 8px;
+}
+
+/* Alert messages */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+}
+
+/* Specific styling for individual tool pages */
+.single-tool-section {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.single-tool-section .mb-4 {
+    margin-bottom: 1.5rem !important;
 }

@@ -3,7 +3,7 @@ import uuid
 import shutil
 import io
 import zipfile
-from flask import Flask, render_template, request, send_file, jsonify, after_this_request
+from flask import Flask, render_template, request, send_file, jsonify
 from werkzeug.utils import secure_filename
 
 # --- PDF Libraries ---
@@ -17,7 +17,7 @@ from PIL import Image
 # --- Document Libraries ---
 from docx import Document
 from pptx import Presentation
-import pandas as pd
+from openpyxl import load_workbook # Replaces pandas
 from xhtml2pdf import pisa
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
@@ -25,30 +25,22 @@ from reportlab.lib.pagesizes import letter
 app = Flask(__name__)
 
 # --- VERCEL CONFIGURATION ---
-# Vercel only allows writing to /tmp
 UPLOAD_FOLDER = '/tmp'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # Limit to 50MB for Serverless stability
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
 
 # --- 1. TOOL DEFINITIONS ---
 TOOLS = {
-    # BASIC PDF
     'merge-pdf': {'name': 'Merge PDF', 'desc': 'Combine multiple PDFs.', 'accept': '.pdf', 'cat': 'basic'},
     'split-pdf': {'name': 'Split PDF', 'desc': 'Separate pages into ZIP.', 'accept': '.pdf', 'cat': 'basic'},
     'compress-pdf': {'name': 'Compress PDF', 'desc': 'Reduce PDF size.', 'accept': '.pdf', 'cat': 'basic'},
-
-    # CONVERT TO PDF
     'jpg-to-pdf': {'name': 'JPG to PDF', 'desc': 'Convert Images to PDF.', 'accept': '.jpg,.jpeg,.png', 'cat': 'to-pdf'},
     'word-to-pdf': {'name': 'Word to PDF', 'desc': 'DOCX text to PDF.', 'accept': '.docx', 'cat': 'to-pdf'},
     'ppt-to-pdf': {'name': 'PowerPoint to PDF', 'desc': 'PPTX slides to PDF.', 'accept': '.pptx', 'cat': 'to-pdf'},
     'excel-to-pdf': {'name': 'Excel to PDF', 'desc': 'XLSX to PDF.', 'accept': '.xlsx', 'cat': 'to-pdf'},
     'html-to-pdf': {'name': 'HTML to PDF', 'desc': 'HTML to PDF.', 'accept': '.html', 'cat': 'to-pdf'},
-
-    # CONVERT FROM PDF
     'pdf-to-word': {'name': 'PDF to Word', 'desc': 'PDF to DOCX.', 'accept': '.pdf', 'cat': 'from-pdf'},
     'pdf-to-txt': {'name': 'PDF to Text', 'desc': 'Extract plain text.', 'accept': '.pdf', 'cat': 'from-pdf'},
-
-    # EDIT & SECURITY
     'remove-pages': {'name': 'Remove Pages', 'desc': 'Remove 1st page.', 'accept': '.pdf', 'cat': 'organize'},
     'extract-pages': {'name': 'Extract Pages', 'desc': 'Extract 1st page.', 'accept': '.pdf', 'cat': 'organize'},
     'rotate-pdf': {'name': 'Rotate PDF', 'desc': 'Rotate 90 degrees.', 'accept': '.pdf', 'cat': 'edit'},
@@ -56,13 +48,10 @@ TOOLS = {
     'unlock-pdf': {'name': 'Unlock PDF', 'desc': 'Remove Password.', 'accept': '.pdf', 'cat': 'security', 'inputs': ['password']},
 }
 
+# --- STATIC PAGES ROUTES ---
 @app.route('/')
 def index():
     return render_template('index.html', tools=TOOLS)
-
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('404.html'), 404
 
 @app.route('/privacy-policy')
 def privacy_policy():
@@ -76,28 +65,35 @@ def terms_of_service():
 def support():
     return render_template('support.html')
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+# --- TOOL ROUTES ---
 @app.route('/tool/<slug>')
 def tool_view(slug):
-    tool = TOOLS.get(slug, TOOLS['merge-pdf'])
+    if slug not in TOOLS:
+        return render_template('404.html'), 404
+    tool = TOOLS.get(slug)
     return render_template('tool.html', tool=tool, slug=slug)
 
-# --- Helper Functions ---
+# --- HELPER FUNCTIONS ---
 def docx_to_pdf_content(input_path, output_path):
     doc = Document(input_path)
     c = canvas.Canvas(output_path, pagesize=letter)
-    text = c.beginText(40, 750)
+    text_obj = c.beginText(40, 750)
     for para in doc.paragraphs:
         if para.text.strip():
-            # Basic text wrap prevents crash
-            line = para.text.replace('\n', ' ')[:90] 
-            text.textLine(line)
-        if text.getY() < 50:
-            c.drawText(text)
+            # Simple wrapping to prevent crash
+            text_obj.textLine(para.text.replace('\n', ' ')[:90])
+        if text_obj.getY() < 50:
+            c.drawText(text_obj)
             c.showPage()
-            text = c.beginText(40, 750)
-    c.drawText(text)
+            text_obj = c.beginText(40, 750)
+    c.drawText(text_obj)
     c.save()
 
+# --- PROCESS API ---
 @app.route('/api/process/<slug>', methods=['POST'])
 def process_file(slug):
     if 'files[]' not in request.files:
@@ -106,15 +102,13 @@ def process_file(slug):
     files = request.files.getlist('files[]')
     password = request.form.get('password', '1234')
 
-    # Unique Session in /tmp
     session_id = str(uuid.uuid4())
     session_folder = os.path.join(app.config['UPLOAD_FOLDER'], session_id)
     os.makedirs(session_folder, exist_ok=True)
-
+    
     input_paths = []
     
     try:
-        # Save Inputs
         for file in files:
             if file.filename:
                 safe_name = secure_filename(file.filename)
@@ -122,21 +116,19 @@ def process_file(slug):
                 file.save(path)
                 input_paths.append(path)
 
-        if not input_paths: 
-            return jsonify({'error': 'No files saved'}), 400
+        if not input_paths: return jsonify({'error': 'No valid files'}), 400
 
-        # Define Output
         out_name = f"processed_{uuid.uuid4().hex[:6]}"
         out_path = os.path.join(session_folder, f"{out_name}.pdf")
         dl_ext = ".pdf"
 
-        # --- LOGIC HANDLERS ---
+        # LOGIC
         if slug == 'merge-pdf':
             merger = PdfWriter()
             for p in input_paths: merger.append(p)
             merger.write(out_path)
             merger.close()
-
+            
         elif slug == 'split-pdf':
             dl_ext = ".zip"
             zip_target = os.path.join(session_folder, f"{out_name}.zip")
@@ -148,7 +140,7 @@ def process_file(slug):
                     p_path = os.path.join(session_folder, f"page_{i+1}.pdf")
                     writer.write(p_path)
                     zf.write(p_path, f"page_{i+1}.pdf")
-
+                    
         elif slug == 'compress-pdf':
             reader = PdfReader(input_paths[0])
             writer = PdfWriter()
@@ -163,6 +155,27 @@ def process_file(slug):
 
         elif slug == 'word-to-pdf':
             docx_to_pdf_content(input_paths[0], out_path)
+
+        elif slug == 'excel-to-pdf':
+            # Use OpenPyXL (Lighter than Pandas)
+            wb = load_workbook(input_paths[0], data_only=True)
+            ws = wb.active
+            
+            # Build Simple HTML
+            html_content = """
+            <html><body><h2>Excel Data</h2>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+            """
+            for row in ws.iter_rows(values_only=True):
+                html_content += "<tr>"
+                for cell in row:
+                    val = str(cell) if cell is not None else ""
+                    html_content += f"<td style='padding:4px;'>{val}</td>"
+                html_content += "</tr>"
+            html_content += "</table></body></html>"
+            
+            with open(out_path, "wb") as f:
+                pisa.CreatePDF(html_content, dest=f)
 
         elif slug == 'html-to-pdf':
             with open(input_paths[0], "r", encoding='utf-8', errors='ignore') as f:
@@ -181,7 +194,7 @@ def process_file(slug):
             reader = PdfReader(input_paths[0])
             with open(out_path, "w", encoding="utf-8") as f:
                 for page in reader.pages:
-                    f.write(page.extract_text() + "\n")
+                    f.write(page.extract_text() + "\n\n")
 
         elif slug == 'protect-pdf':
             reader = PdfReader(input_paths[0])
@@ -197,9 +210,9 @@ def process_file(slug):
             writer = PdfWriter()
             writer.append_pages_from_reader(reader)
             writer.write(out_path)
-
-        # Fallback for undefined
+            
         else:
+            # Basic fallback copy
             shutil.copy(input_paths[0], out_path)
 
         final_file = f"{out_name}{dl_ext}"
@@ -209,7 +222,7 @@ def process_file(slug):
         })
 
     except Exception as e:
-        print(e)
+        print(f"ERROR: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/download/<session_id>/<filename>')

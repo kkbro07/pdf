@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy | FileSwapr{% endblock %}
+
+{% block canonical_url %}https://fileswapr.vercel.app/privacy-policy{% endblock %}
+
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://fileswapr.vercel.app/privacy-policy",
+    "name": "Privacy Policy",
+    "description": "Learn how FileSwapr handles your data and respects your privacy."
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen pt-12 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto relative overflow-hidden">
+    
+    <!-- Background Decor -->
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+    <!-- Header -->
+    <div class="text-center mb-16 hero-reveal">
+        <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon to-primary mb-6">
+            Privacy Policy
+        </h1>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+            Your privacy is non-negotiable. We believe in transparency, security, and data minimization.
+        </p>
+    </div>
+
+    <!-- Content Card -->
+    <div class="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative hero-reveal">
+        
+        <div class="space-y-12 text-gray-300 leading-relaxed">
+
+            <!-- Section 1 -->
+            <section>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-neon/10 text-neon font-bold flex items-center justify-center text-lg border border-neon/20">1</span>
+                    <h2 class="text-2xl font-bold text-white">Introduction</h2>
+                </div>
+                <p>Your privacy is very important to us. It is FileSwapr's policy to respect your privacy regarding any information we may collect from you across our website and any other services we operate.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-neon/10 text-neon font-bold flex items-center justify-center text-lg border border-neon/20">2</span>
+                    <h2 class="text-2xl font-bold text-white">Information We Collect</h2>
+                </div>
+                <p class="mb-4">We do <strong class="text-white">not collect any personal information</strong> or data from the files you upload for conversion. All uploaded files are processed securely on our servers and are automatically deleted shortly after processing.</p>
+                <div class="bg-white/5 border border-white/5 rounded-xl p-4">
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>No data mining</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>No permanent storage of your files</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>No selling or sharing of content</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-neon/10 text-neon font-bold flex items-center justify-center text-lg border border-neon/20">3</span>
+                    <h2 class="text-2xl font-bold text-white">How We Use Your Information</h2>
+                </div>
+                <p>The content of your uploaded files is used solely for the purpose of providing the requested file conversion service. Once the conversion is complete, the files are scheduled for <span class="text-neon">immediate automatic deletion</span> from the temporary storage (`/tmp` directory).</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-neon/10 text-neon font-bold flex items-center justify-center text-lg border border-neon/20">4</span>
+                    <h2 class="text-2xl font-bold text-white">Security</h2>
+                </div>
+                <p>We take your data security seriously. All communication between your browser and our server is encrypted via <strong class="text-white">SSL/TLS</strong> standards. Uploaded and converted files are stored strictly in temporary environments and never exposed publicly.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-neon/10 text-neon font-bold flex items-center justify-center text-lg border border-neon/20">5</span>
+                    <h2 class="text-2xl font-bold text-white">Cookies</h2>
+                </div>
+                <p>FileSwapr utilizes essential cookies solely for website functionality. We do not use cookies for tracking, analytics, or targeted advertising purposes.</p>
+            </section>
+
+            <!-- Section 6 & 7 -->
+            <section>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-neon/10 text-neon font-bold flex items-center justify-center text-lg border border-neon/20">6</span>
+                    <h2 class="text-2xl font-bold text-white">Third-Party Services & Links</h2>
+                </div>
+                <p>We utilize trusted serverless infrastructure (Vercel). We do not share your file data with third parties. Our site may contain links to external sites; we are not responsible for their privacy practices.</p>
+            </section>
+
+            <!-- Contact -->
+            <section class="border-t border-white/10 pt-8 mt-12">
+                <h2 class="text-2xl font-bold text-white mb-6">Contact Us</h2>
+                <div class="bg-gradient-to-r from-neon/10 to-primary/10 border border-white/5 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                        <p class="text-gray-300">Have questions about our privacy practices?</p>
+                    </div>
+                    <a href="mailto:kirtankalathiya882@gmail.com" class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-neon hover:shadow-lg transition-all whitespace-nowrap">
+                        kirtankalathiya882@gmail.com
+                    </a>
+                </div>
+            </section>
+
+        </div>
+        
+        <div class="mt-12 text-center border-t border-white/5 pt-6 text-sm text-gray-600">
+            Last Updated: 2025
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found | FileSwapr{% endblock %}
+
+{% block content %}
+<div class="min-h-[80vh] flex items-center justify-center relative overflow-hidden px-4">
+    
+    <!-- Background Noise/Decor -->
+    <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-20">
+        <!-- Giant Ghost Text for visual depth -->
+        <span class="text-[20rem] font-bold text-white/5 select-none blur-sm">404</span>
+    </div>
+
+    <div class="relative z-10 text-center max-w-2xl mx-auto">
+        
+        <!-- Animated Icon -->
+        <div class="inline-flex mb-8 relative group">
+            <div class="absolute inset-0 bg-neon blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+            <div class="relative bg-white/5 border border-white/10 p-6 rounded-2xl">
+                <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-4">
+            Page Not Found
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-lg text-gray-400 mb-10 leading-relaxed">
+            The file you are looking for might have been moved, renamed, or corrupt. 
+            Or maybe it never existed in this dimension.
+        </p>
+
+        <!-- Action Button -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/" class="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-transform hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-r from-neon to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span class="relative flex items-center gap-2 group-hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    Return Home
+                </span>
+            </a>
+            
+            <a href="javascript:history.back()" class="px-8 py-4 border border-white/10 rounded-full font-medium text-gray-300 hover:bg-white/5 hover:border-white/30 transition-all">
+                Go Back
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple entry animation specifically for the 404 page content
+    document.addEventListener("DOMContentLoaded", () => {
+        if(typeof gsap !== 'undefined'){
+            gsap.from(".z-10 > *", {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        }
+    });
+</script>
+{% endblock %}

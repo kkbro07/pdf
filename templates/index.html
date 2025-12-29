@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="relative flex flex-col items-center justify-center pt-20 pb-12 text-center z-10">
+    <div class="inline-block px-4 py-1 border border-neon/30 rounded-full bg-neon/5 mb-6 backdrop-blur-sm hero-reveal">
+        <span class="text-neon text-xs font-bold tracking-widest uppercase">Simple. Fast. Secure.</span>
+    </div>
+    <h1 class="text-5xl md:text-8xl font-extrabold leading-none mb-6 tracking-tight hero-reveal">
+        Transform <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-primary">Anything.</span>
+    </h1>
+    <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 hero-reveal">
+        Merge, split, compress, and convert your documents without limitations. 
+        Secure local processing.
+    </p>
+    <div class="hero-reveal mb-16">
+        <a href="#tools" class="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-neon hover:scale-105 transition-all duration-300">
+            Explore All Tools
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </a>
+    </div>
+
+    <!-- ADDED: Features Grid -->
+    <div class="max-w-7xl mx-auto px-6 w-full hero-reveal">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            
+            <!-- Feature 1: Secure -->
+            <div class="p-6 rounded-2xl bg-glass border border-white/5 hover:border-neon/30 transition-colors flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-lg">100% Secure</h3>
+                    <p class="text-gray-500 text-sm">Files processed safely</p>
+                </div>
+            </div>
+
+            <!-- Feature 2: Fast -->
+            <div class="p-6 rounded-2xl bg-glass border border-white/5 hover:border-neon/30 transition-colors flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-400 shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-lg">Lightning Fast</h3>
+                    <p class="text-gray-500 text-sm">Instant processing</p>
+                </div>
+            </div>
+
+            <!-- Feature 3: Everywhere -->
+            <div class="p-6 rounded-2xl bg-glass border border-white/5 hover:border-neon/30 transition-colors flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 019-9m-9 9h18"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-lg">Works Everywhere</h3>
+                    <p class="text-gray-500 text-sm">All devices supported</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- TOOLS GRID -->
+<div id="tools" class="max-w-7xl mx-auto px-6 py-12 space-y-20">
+    
+    <!-- Setup Categories -->
+    {% set categories = [
+        ('Basic PDF Tools', 'basic', 'blue'),
+        ('Convert To PDF', 'to-pdf', 'green'),
+        ('Convert From PDF', 'from-pdf', 'orange'),
+        ('Organize & Edit', 'organize', 'purple'),
+        ('Advanced Editing', 'edit', 'red'),
+        ('Security & Protection', 'security', 'yellow')
+    ] %}
+
+    <!-- Loop Through Categories -->
+    {% for cat_name, cat_key, color in categories %}
+    <div class="category-container" id="{{ cat_key }}"> <!-- Removed opacity-0 for safety -->
+        
+        <!-- Header -->
+        <div class="flex items-end gap-4 mb-8 border-b border-white/10 pb-4">
+            <h2 class="text-3xl font-bold text-white">{{ cat_name }}</h2>
+            <div class="h-1 flex-grow bg-gradient-to-r from-{{ color }}-500/20 to-transparent rounded-full mb-2"></div>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for slug, tool in tools.items() %}
+                {% if tool.cat == cat_key %}
+                
+                <a href="/tool/{{ slug }}" 
+                   class="group relative bg-glass border border-white/5 p-6 rounded-2xl overflow-hidden hover:border-{{ color }}-500 hover:bg-white/5 transition-all duration-300">
+                    
+                    <div class="flex items-start gap-4 relative z-10">
+                        <!-- Icon Box -->
+                        <div class="w-12 h-12 rounded-xl bg-{{ color }}-500/10 text-{{ color }}-400 flex flex-shrink-0 items-center justify-center group-hover:bg-{{ color }}-500 group-hover:text-black transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        
+                        <!-- Text -->
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-100 group-hover:text-white mb-1">{{ tool.name }}</h3>
+                            <p class="text-sm text-gray-500 line-clamp-2">{{ tool.desc }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Use Button (Appears on Hover) -->
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-xs font-bold text-{{ color }}-500 uppercase tracking-wider opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                            Use Tool &rarr;
+                        </span>
+                    </div>
+
+                </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Fallback if python logic returns empty groups -->
+    <div class="h-24"></div>
+</div>
+
+{% endblock %}
